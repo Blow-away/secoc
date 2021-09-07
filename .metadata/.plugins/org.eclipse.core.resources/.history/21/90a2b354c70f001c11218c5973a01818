@@ -1,0 +1,11 @@
+/*
+ * SecOC_Cfg.c
+ *
+ *  Created on: 2021Äê9ÔÂ7ÈÕ
+ *      Author: zhao chenyang
+ */
+
+#include "SecOC_Cfg.h"
+
+extern SecOCintermediate_type SecOCintermediateTx[];
+extern SecOCintermediateRx_type SecOCintermediateRx[];

@@ -1,0 +1,65 @@
+/*
+ * SecOC.c
+ *
+ *  Created on: 2021年9月6日
+ *      Author: zhao chenyang
+ */
+
+#include <string.h>
+#include "SecOC.h"
+#include "PduR_SecOC.h"
+
+uint8 apduTx[8];
+uint8 spduTx[8];
+uint8 apduRx[8];
+uint8 spduRx[8];
+
+bool is_init(){
+	// 判断SecOC是否已初始化(_secOCState)
+	    if (SECOC_INIT != _secOCState)
+	    {
+	        return E_NOT_OK; // 未初始化
+	    }
+
+	    // 判断id合法性，超过发送报文的配置数量
+	    if (TxPduId >= SECOC_NUM_OF_TX_IPDU)
+	    {
+	        return E_NOT_OK; //非secoc内txpduid
+	    }
+}
+
+Std_ReturnType SecOC_IfTransmit(PduIdType TxPduId, const PduInfoType *PduInfoPtr){
+	PduIdTx = TxPduId;
+	uint8 len = PduInfoPtr->SduLength;
+	apduTxLength = len;
+	uint8 *src = PduInfoPtr->SduDataPtr;
+	uint8 *dst = apduTx;
+	memcpy(dst,src,len);
+	return E_OK;
+}
+
+
+Std_ReturnType authenticate(SecOCintermidate_type SecOCintermidate){
+	//调用验证
+	return E_OK;
+}
+
+void SecOC_TxConfirmation(PduIdType TxPduId, Std_ReturnType result){
+	PduR_SecOCIfTxConfirmation(TxPduId, result);
+}
+
+
+void  SecOC_RxIndication(PduIdType RxPduId, const PduInfoType* PduInfoPtr){
+		PduIdRx = RxPduId;
+	    uint8 len = PduInfoPtr->SduLength;
+	    spduRxLength = len;
+	    uint8 *src = PduInfoPtr->SduDataPtr;
+	    uint8 *dst = spduRx;
+	    memcpy(dst, src, len);
+}
+void verify(){
+
+}
+
+
+

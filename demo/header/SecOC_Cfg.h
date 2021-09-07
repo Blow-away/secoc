@@ -1,0 +1,23 @@
+/*
+ * SecOC_Cfg.h
+ *
+ *  Created on: 2021Äê9ÔÂ7ÈÕ
+ *      Author: zhao chenyang
+ */
+
+#ifndef SECOC_CFG_H_
+#define SECOC_CFG_H_
+
+#include "Std_Types.h"
+#include "ComStack_Types.h"
+#include "SecOC_Types.h"
+
+#define SECOC_NUM_OF_TX_IPDU 2
+#define SECOC_NUM_OF_RX_IPDU 2
+
+extern SecOCintermediate_type SecOCintermediateTx[];
+extern SecOCintermediateRx_type SecOCintermediateRx[];
+extern SecOCRxPduProcessing_type SecOCRxPduProcessing[];
+
+
+#endif /* SECOC_CFG_H_ */

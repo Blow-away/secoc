@@ -1,0 +1,41 @@
+/*
+ * SecOC_Types.h
+ *
+ *  Created on: 2021年9月7日
+ *      Author: zhao chenyang
+ */
+
+#ifndef SECOC_TYPES_H_
+#define SECOC_TYPES_H_
+
+#include <stdbool.h>
+#include "Platform_Types.h"
+
+typedef enum { //SecOC状态
+    SECOC_UNINIT, //SecOC未初始化
+    SECOC_INIT    //SecOC初始化
+} SecOC_StateType;
+
+typedef struct {
+    uint8 addr_st; // a/spdu起始地址
+    uint8 addr_cpy; // a/spdu所占容量(字节)
+    uint8 apduBlen; // apdu长度
+    uint8 spduBlen; // spdu长度
+    type_t type; // 报文类型(direct trigger tp upperTp)
+    uint8 abc; // 认证用计数器
+    uint8 slock; // tp模式下 底层通信模块需要锁定spdu区域 不允许读写
+} SecOCintermeidate_type;
+
+typedef struct {
+    uint8 addr_st;  // 存储空间a/spdu起始区域
+    uint8 addr_cpy;  // 存储空间a/spdu所占容量  8*(单/多)
+    uint8 apduBlen;  // apdu所用长度
+    uint8 spduBlen;  // spdu所用长度
+    type_t type;  // 报文类型enum【drirect, trigger, tp, upperTp】
+    uint8 abc; // 验证用计数器
+    uint8 avac; // 验证用计数器
+    uint8 slock;  //tp模式下 底层通信模块需要锁定spdu区域 不允许读写
+    uint8 rxall； //tp数据是否收完整，初始FALSE
+}SecOCintermediateRx_type;
+
+#endif /* SECOC_TYPES_H_ */

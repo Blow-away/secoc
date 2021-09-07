@@ -1,0 +1,25 @@
+/*
+ * SecOC_Cfg.c
+ *
+ *  Created on: 2021Äê9ÔÂ7ÈÕ
+ *      Author: zhao chenyang
+ */
+
+#include "SecOC_Cfg.h"
+
+SecOCintermediate_type SecOCintermediateTx [SECOC_NUM_OF_TX_IPDU] = {
+	{
+
+	},
+	{
+
+	},
+};
+SecOCintermediateRx_type SecOCintermediateRx [SECOC_NUM_OF_RX_IPDU] = {
+	{
+
+	},
+	{
+
+	},
+};

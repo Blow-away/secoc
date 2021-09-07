@@ -1,0 +1,114 @@
+/*
+ * SecOC.c
+ *
+ *  Created on: 2021年9月6日
+ *      Author: zhao chenyang
+ */
+
+#include <string.h>
+#include "SecOC.h"
+#include "PduR_SecOC.h"
+#include "SecOC_Cfg.h"
+
+uint8 apduTx[8*SECOC_NUM_OF_TX_IPDU];
+uint8 spduTx[8*SECOC_NUM_OF_TX_IPDU];
+uint8 apduRx[8*SECOC_NUM_OF_RX_IPDU];
+uint8 spduRx[8*SECOC_NUM_OF_RX_IPDU];
+
+SecOC_StateType _secOCState = SECOC_UNINIT;
+
+bool is_legal(PduIdType TxPduId){
+	// 判断SecOC是否已初始化(_secOCState)
+	if (SECOC_INIT != _secOCState)
+	{
+		return false; // 未初始化
+	}
+
+	// 判断id合法性，超过发送报文的配置数量
+	if (TxPduId >= SECOC_NUM_OF_TX_IPDU)
+	{
+		return false; //非secoc内txpduid
+	}
+}
+
+Std_ReturnType SecOC_IfTransmit(PduIdType TxPduId, const PduInfoType *PduInfoPtr){
+	if(!is_legal(TxPduId)){
+		return E_NOT_OK;
+	}
+	uint8 len = PduInfoPtr->SduLength;
+	uint8 *src = PduInfoPtr->SduDataPtr;
+
+	SecOCintermediate_type intermediate = SecOCintermediateTx[TxPduId];
+	uint8 *dst = apduTx + intermediate.addr_st;
+	intermediate.apduBlen = len;
+
+	memcpy(dst,src,len);
+
+	return E_OK;
+}
+
+
+Std_ReturnType authenticate(SecOCintermediate_type SecOCintermidate,PduInfoType *PduInfoPtr){
+	//调用验证
+	return E_OK;
+}
+
+void SecOC_MainFunctionTx(void) {
+    // SecOC是否已初始化
+    if (_secOCState != SECOC_INIT)
+        return;
+
+    // 遍历所有apdu存储空间
+    uint8 idx = 0;
+    Std_ReturnType result;
+    PduInfoType PduInfo;
+    for (idx; idx < SECOC_NUM_OF_TX_IPDU; idx++)
+    {
+        SecOCintermediate_type intermediate = SecOCintermediateTx[idx];
+        // 若存在值且spdu未锁
+        if (intermediate.apduBlen > 0 && intermediate.slock == 0)
+        {
+            authenticate(intermediate, &PduInfo);
+            if (PduInfo.SduLength > 0)
+            { //authenticate 成功
+                result = PduR_SecOCTransmit(idx, &PduInfo);
+            }
+        }
+    }
+}
+
+
+void SecOC_TxConfirmation(PduIdType TxPduId, Std_ReturnType result){
+
+	if(!is_legal(TxPduId))
+		return;
+
+	//释放spdu
+	SecOCintermediate_type intermediate = SecOCintermediateTx[TxPduId];
+	intermediate.spduBlen = 0;
+
+	// 继续传递
+	if (result == E_OK) {
+		PduR_SecOCIfTxConfirmation(TxPduId, result);
+	}
+
+}
+
+
+void  SecOC_RxIndication(PduIdType RxPduId, const PduInfoType* PduInfoPtr){
+		PduIdRx = RxPduId;
+	    uint8 len = PduInfoPtr->SduLength;
+	    spduRxLength = len;
+	    uint8 *src = PduInfoPtr->SduDataPtr;
+	    uint8 *dst = spduRx;
+	    memcpy(dst, src, len);
+}
+void verify(){
+
+}
+void SecOC_MainFunctionRx(void){
+
+}
+
+
+

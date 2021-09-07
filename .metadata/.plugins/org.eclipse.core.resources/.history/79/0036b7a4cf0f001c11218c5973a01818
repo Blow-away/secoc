@@ -1,0 +1,102 @@
+/*
+ * SecOC_Cfg.c
+ *
+ *  Created on: 2021年9月7日
+ *      Author: zhao chenyang
+ */
+
+#include "SecOC_Cfg.h"
+
+SecOCintermediate_type SecOCintermediateTx [SECOC_NUM_OF_TX_IPDU] = {
+	{
+		.abc 		= 0,
+		.addr_st 	= 0,
+		.addr_cpy 	= 8,
+		.type 		= 0,
+		.slock 		= 0,
+	},
+	{
+		.abc 		= 0,
+		.addr_st 	= 8,
+		.addr_cpy 	= 8,
+		.type 		= 0,
+		.slock 		= 0,
+	},
+};
+SecOCintermediateRx_type SecOCintermediateRx [SECOC_NUM_OF_RX_IPDU] = {
+	{
+		.abc 		= 0,
+		.addr_st 	= 0,
+		.addr_cpy 	= 8,
+		.type 		= 0,
+		.slock 		= 0,
+	},
+	{
+		.abc 		= 0,
+		.addr_st 	= 8,
+		.addr_cpy 	= 8,
+		.type 		= 0,
+		.slock 		= 0,
+	},
+};
+
+
+SecOCRxPduProcessing_type SecOCRxPduProcessing[SECOC_NUM_OF_RX_IPDU] = {
+	{
+			.SecOCAuthDataFreshnessLen = ,
+			//0..1
+			.SecOCAuthDataFreshnessStartPosition = ,
+			    //0..1
+
+			.SecOCAuthenticationBuildAttempts = 0,
+			    //0..1
+
+			 .SecOCAuthenticationVerifyAttempts; //[0..65535](default value 0)     单个spdu验证可尝试的次数上限
+			    //0..1
+
+			  .SecOCAuthInfoTruncLength; //[1..65535](default value --)             裁剪mac长度，调用csm_Macverify传入
+			    //1
+
+			  .SecOCDataId; //[0..65535](default value --)                          生成mac时数据一部分
+			    //1
+
+			  .SecOCFreshnessValueId; //[0..65535](default value --)                新鲜值id，构造fv()传入
+			    //1
+
+			  .SecOCFreshnessValueLength; //[0..64](default value --)                新鲜值完整长度，构造fv()传入
+			    //1
+
+			  .SecOCFreshnessValueTruncLength; //[0..64](default value --)           裁剪新鲜值长度， 构造fv()时需要传入
+			    //1
+
+			  .SecOCReceptionOverflowStrategy = REPLACE, //[QUEUE/REJECT/REPLACE] 数据类型 暂时固定REPLACE  新报文覆盖旧报文数据
+			    //1
+
+			   .SecOCReceptionQueueSize; //[1..65535](default value --)              填空，接收队列长度，暂不考虑
+			    //0..1
+
+			   .SecOCUseAuthDataFreshness = false; //(default value false)                  暂时固定false
+			    //1
+
+			    SecOCVerificationStatusPropagationMode_type SecOCVerificationStatusPropagationMode; //[BOTH/FAILURE_ONLY/NONE] 枚举类型 暂不考虑
+			    //1
+
+			    const CsmJob_type *const SecOCRxAuthServiceConfigRef; //Symbolic name reference to [ CsmJob ]  调用csm_Macverify相关参数 暂不考虑
+			    //1
+
+			    const SecOCSameBufferPduCollection_type *const SecOCSameBufferPduRef; //Reference to [ SecOCSameBufferPduCollection ]  暂不考虑
+			    //0..1
+
+			    const SecOCRxAuthenticPduLayer_type SecOCRxAuthenticPduLayer;   //          报文类型   SECOC_IFPDU/SECOC_TPPDU
+			    //1
+
+			    const SecOCRxPduSecuredArea_type SecOCRxPduSecuredArea; //                  用于加密的数据部分 长度和偏移
+			    //0..1
+
+			    const SecOCRxSecuredPduLayer_type SecOCRxSecuredPduLayer; //                分帧模式，暂时只配置SecOCRxSecuredPdu_type
+			    //1
+	},
+	{
+
+	}
+};
