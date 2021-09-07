@@ -100,7 +100,7 @@ void  SecOC_RxIndication(PduIdType RxPduId, const PduInfoType* PduInfoPtr){
 		return;
 
 	uint8 idx,AuthStartPosition,AuthLen;
-	SecOCRxPduProcessing_type tmpSecOCRxPduProcessing = SecOCRxPduProcessing[RxPduId];
+	SecOCRxPduProcessing_type *tmpSecOCRxPduProcessing = &SecOCRxPduProcessing[RxPduId];
 
 	//判断是否有数据部分做新鲜值
 	if(tmpSecOCRxPduProcessing->SecOCUseAuthDataFreshness == true){
@@ -112,15 +112,15 @@ void  SecOC_RxIndication(PduIdType RxPduId, const PduInfoType* PduInfoPtr){
 	switch (tmpSecOCRxPduProcessing->SecOCReceptionOverflowStrategy)
 	{
 	case REPLACE:
-		memcpy((uint8 *)(SecOCintermediateRx[RxPduId].spduBlen + spduRx), PduInfoPtr.SduDataPtr, PduInfoPtr.SduLength);
-		SecOCintermediateRx[RxPduId].spduBlen = PduInfoPtr.SduLength;
+		memcpy((uint8 *)(SecOCintermediateRx[RxPduId].apduBlen + spduRx), PduInfoPtr->SduDataPtr, PduInfoPtr->SduLength);
+		SecOCintermediateRx[RxPduId].spduBlen = PduInfoPtr->SduLength;
 		SecOCintermediateRx[RxPduId].abc = 0;
 		SecOCintermediateRx[RxPduId].avac = 0;
 		break;
 	case REJECT: // 当有在使用的secure pdu， 拒绝新来的数据
 		if(SecOCintermediateRx[RxPduId].spduBlen == 0){
-			memcpy((uint8 *)(SecOCintermediateRx[RxPduId].spduBlen + spduRx), PduInfoPtr.SduDataPtr, PduInfoPtr.SduLength);
-			SecOCintermediateRx[RxPduId].spduBlen = PduInfoPtr.SduLength;
+			memcpy((uint8 *)(SecOCintermediateRx[RxPduId].spduBlen + spduRx), PduInfoPtr->SduDataPtr, PduInfoPtr->SduLength);
+			SecOCintermediateRx[RxPduId].spduBlen = PduInfoPtr->SduLength;
 		}
 		break;
 	case QUEUE: // 当有在使用的secure pdu， 排队新来的数据，SecOCReceptionQueueSize为上限

@@ -1,55 +1,8 @@
-19:20:34 **** Incremental Build of configuration Debug_FLASH for project demo ****
+20:15:14 **** Incremental Build of configuration Debug_FLASH for project demo ****
 make -j12 all 
-Building file: ../src/CanIf.c
-Building file: ../src/Com.c
-Building file: ../src/PduR_CanIf.c
-Building file: ../src/PduR_Com.c
-Invoking: Standard S32DS C Compiler
-powerpc-eabivle-gcc "@src/CanIf.args" -MMD -MP -MF"src/CanIf.d" -MT"src/CanIf.o" -o "src/CanIf.o" "../src/CanIf.c"
-Invoking: Standard S32DS C Compiler
-powerpc-eabivle-gcc "@src/CanIf.args" -MMD -MP -MF"src/Com.d" -MT"src/Com.o" -o "src/Com.o" "../src/Com.c"
-Invoking: Standard S32DS C Compiler
-powerpc-eabivle-gcc "@src/CanIf.args" -MMD -MP -MF"src/PduR_CanIf.d" -MT"src/PduR_CanIf.o" -o "src/PduR_CanIf.o" "../src/PduR_CanIf.c"
-Invoking: Standard S32DS C Compiler
-powerpc-eabivle-gcc "@src/CanIf.args" -MMD -MP -MF"src/PduR_Com.d" -MT"src/PduR_Com.o" -o "src/PduR_Com.o" "../src/PduR_Com.c"
-Building file: ../src/PduR_SecOC.c
 Building file: ../src/SecOC.c
-Building file: ../src/SecOC_Cfg.c
-Invoking: Standard S32DS C Compiler
-powerpc-eabivle-gcc "@src/CanIf.args" -MMD -MP -MF"src/PduR_SecOC.d" -MT"src/PduR_SecOC.o" -o "src/PduR_SecOC.o" "../src/PduR_SecOC.c"
-Invoking: Standard S32DS C Compiler
-powerpc-eabivle-gcc "@src/CanIf.args" -MMD -MP -MF"src/SecOC_Cfg.d" -MT"src/SecOC_Cfg.o" -o "src/SecOC_Cfg.o" "../src/SecOC_Cfg.c"
 Invoking: Standard S32DS C Compiler
 powerpc-eabivle-gcc "@src/CanIf.args" -MMD -MP -MF"src/SecOC.d" -MT"src/SecOC.o" -o "src/SecOC.o" "../src/SecOC.c"
-../src/CanIf.c: In function 'CanIf_Transmit':
-../src/CanIf.c:21:23: warning: passing argument 3 of 'memcpy' makes integer from pointer without a cast
-      memcpy(dst, src, len);
-                       ^
-In file included from C:/NXP/S32DS_Power_v2.1/S32DS/build_tools/e200_ewl2/EWL_C/include/string.h:17:0,
-                 from F:/secoc/demo/header/Platform_Types.h:10,
-                 from F:/secoc/demo/header/ComStack_Types.h:11,
-                 from F:/secoc/demo/header/CanIf.h:12,
-                 from ../src/CanIf.c:8:
-C:/NXP/S32DS_Power_v2.1/S32DS/build_tools/e200_ewl2/EWL_C/include/cstring:58:34: note: expected 'size_t' but argument is of type 'int *'
- _EWL_IMP_EXP_C void * _EWL_CDECL memcpy(void * _EWL_RESTRICT s1, const void * _EWL_RESTRICT s2, size_t n) _EWL_CANT_THROW;
-                                  ^
-../src/CanIf.c: In function 'send_result':
-../src/CanIf.c:26:2: warning: implicit declaration of function 'PduR_CanIfTxConfirmation' [-Wimplicit-function-declaration]
-  PduR_CanIfTxConfirmation(TxPduId, result);
-  ^
-../src/Com.c:13:3: warning: missing braces around initializer [-Wmissing-braces]
-   1,1,1,1,1,1,0,0,
-   ^
-../src/Com.c:13:3: warning: (near initialization for 'pdus[0]') [-Wmissing-braces]
-../src/Com.c: In function 'send_message':
-../src/Com.c:22:21: warning: assignment from incompatible pointer type
-     temp.SduDataPtr = pdus;
-                     ^
-Finished building: ../src/CanIf.c
-Finished building: ../src/PduR_CanIf.c
-Finished building: ../src/Com.c
- 
- 
 ../src/SecOC.c: In function 'SecOC_MainFunctionTx':
 ../src/SecOC.c:62:20: warning: variable 'result' set but not used [-Wunused-but-set-variable]
      Std_ReturnType result;
@@ -57,19 +10,26 @@ Finished building: ../src/Com.c
 ../src/SecOC.c: In function 'SecOC_TxConfirmation':
 ../src/SecOC.c:86:25: warning: variable 'intermediate' set but not used [-Wunused-but-set-variable]
   SecOCintermediate_type intermediate = SecOCintermediateTx[TxPduId];
- 
                          ^
+../src/SecOC.c: In function 'SecOC_RxIndication':
+../src/SecOC.c:135:3: warning: implicit declaration of function 'printf' [-Wimplicit-function-declaration]
+   printf("throw err to get wrong SecOCReceptionOverflowStrategy");
+   ^
+../src/SecOC.c:135:3: warning: incompatible implicit declaration of built-in function 'printf'
+../src/SecOC.c:102:30: warning: variable 'AuthLen' set but not used [-Wunused-but-set-variable]
+  uint8 idx,AuthStartPosition,AuthLen;
+                              ^
+../src/SecOC.c:102:12: warning: variable 'AuthStartPosition' set but not used [-Wunused-but-set-variable]
+  uint8 idx,AuthStartPosition,AuthLen;
+            ^
+../src/SecOC.c:102:8: warning: unused variable 'idx' [-Wunused-variable]
+  uint8 idx,AuthStartPosition,AuthLen;
+        ^
 ../src/SecOC.c: In function 'is_legal':
 ../src/SecOC.c:31:1: warning: control reaches end of non-void function [-Wreturn-type]
  }
  ^
-Finished building: ../src/PduR_Com.c
- 
-Finished building: ../src/SecOC_Cfg.c
-Finished building: ../src/PduR_SecOC.c
 Finished building: ../src/SecOC.c
- 
- 
  
 Building target: demo.elf
 Invoking: Standard S32DS C Linker
