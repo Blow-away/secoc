@@ -7,7 +7,7 @@
 **     Version     : Component 01.197, Driver 01.00, CPU db: 3.00.000
 **     Datasheet   : MPC5748G RM Rev. 6, 10/2017
 **     Compiler    : GNU C Compiler
-**     Date/Time   : 2021-09-07, 18:22, # CodeGen: 0
+**     Date/Time   : 2021-09-07, 21:10, # CodeGen: 2
 **     Abstract    :
 **
 **     Settings    :
@@ -59,6 +59,7 @@
 #include "edma_driver.h"
 #include "osif.h"
 #include "can_pal.h"
+#include "timing_pal.h"
 #include "system_MPC5748G.h"
 
 /* Including needed modules to compile this module/procedure */
@@ -66,6 +67,7 @@
 #include "dmaController1.h"
 #include "pin_mux.h"
 #include "can_pal1.h"
+#include "timing_pal1.h"
 #ifdef __cplusplus
 extern "C" {
 #endif

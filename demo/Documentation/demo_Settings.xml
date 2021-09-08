@@ -113,5 +113,19 @@
       <EmptySection_DummyValue />
     </Events>
   </Bean>
+  <Bean name="timing_pal1" type="timing_pal">
+    <Enabled v="Y" />
+    <Properties>
+      <Component_name v="timing_pal1" />
+      <Device v="PIT" />
+      <Component_version v="S32_SDK" />
+    </Properties>
+    <Methods>
+      <EmptySection_DummyValue />
+    </Methods>
+    <Events>
+      <EmptySection_DummyValue />
+    </Events>
+  </Bean>
 </PE_PROJECT_SETTINGS_DOCUMENTATION>
 

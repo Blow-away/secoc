@@ -11,7 +11,9 @@ RM := rm -rf
 -include src/subdir.mk
 -include Sources/subdir.mk
 -include SDK/rtos/osif/subdir.mk
+-include SDK/platform/pal/src/timing/subdir.mk
 -include SDK/platform/pal/src/can/subdir.mk
+-include SDK/platform/drivers/src/pit/subdir.mk
 -include SDK/platform/drivers/src/pins/siul2/subdir.mk
 -include SDK/platform/drivers/src/interrupt/subdir.mk
 -include SDK/platform/drivers/src/flexcan/subdir.mk

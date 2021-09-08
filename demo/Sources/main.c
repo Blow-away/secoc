@@ -52,9 +52,14 @@
 #endif
 #include <stdint.h>
 #include <stdbool.h>
+#include "SecOC.h"
+#include "SecOC_Cfg.h"
+#include "CanIf.h"
 /******************************************************************************
  * Definitions
  ******************************************************************************/
+#define PIT_CHANNEL	    0UL
+#define PERIOD_BY_NS	100000000UL /* nanosecond unit, The period is 1 second */
 #define LED_PORT        PTA
 #define LED0            10U
 #define LED1             7U
@@ -91,6 +96,7 @@ uint8_t ledRequested = (uint8_t)LED0_CHANGE_REQUESTED;
 void buttonISR(void);
 void BoardInit(void);
 void GPIOInit(void);
+void sendCan(int id);
 /******************************************************************************
  * Functions
  ******************************************************************************/
@@ -197,6 +203,52 @@ volatile int exit_code = 0;
  *     - Common_Init()
  *     - Peripherals_Init()
 */
+
+void sendCan(int id){
+    /* Set information about the data to be sent
+     *  - Standard message ID
+     *  - Bit rate switch disabled
+     *  - Flexible data rate disabled
+     *  - Use zeros for FD padding
+     */
+	can_buff_config_t buffCfg =  {
+	    .enableFD = false,
+	    .enableBRS = false,
+	    .fdPadding = 0U,
+	    .idType = CAN_MSG_ID_STD,
+	    .isRemote = false
+	};
+
+    /* Configure TX buffer with index TX_MAILBOX*/
+    CAN_ConfigTxBuff(&can_pal1_instance, TX_MAILBOX, &buffCfg);
+    /* Prepare message to be sent */
+    can_message_t message = {
+        .cs = 0U,
+        .id = TX_MSG_ID,
+        .length = 8U
+    };
+	if(len[id]!=0){
+        memcpy(&message.data,spdu+8*id,8U);
+    	/* Send the information via CAN */
+    	if(CAN_Send(&can_pal1_instance, TX_MAILBOX, &message)==0x000U){
+    		send_result(id,E_OK);
+    	}else{
+    		send_result(id,E_OK);
+    	}
+	}
+}
+
+void clock_callback(void * userData){
+	(void)userData;
+	PINS_DRV_TogglePins(LED_PORT, (1 << LED1));
+	SecOC_MainFunctionTx();
+	for(int i=0;i< SECOC_NUM_OF_TX_IPDU;++i){
+		sendCan(i);
+	}
+}
+
+
+
 int main(void)
 {
   /*** Processor Expert internal initialization. DON'T REMOVE THIS CODE!!! ***/
@@ -207,6 +259,17 @@ int main(void)
     /* Do the initializations required for this application */
     BoardInit();
     GPIOInit();
+
+    uint64_t pitResolution;
+    /* Initialize TIMING over PIT */
+    TIMING_Init(&timing_pal1_instance, &timing_pal1_InitConfig);
+
+	/* Get tick resolution in nanosecond unit for TIMING over PIT */
+	TIMING_GetResolution(&timing_pal1_instance, TIMER_RESOLUTION_TYPE_NANOSECOND, &pitResolution);
+
+	/* Start PIT channel 0 counting with the period is 1 second,
+       the period in tick = the period in nanosecond / PIT tick resolution in nanosecond */
+	TIMING_StartChannel(&timing_pal1_instance, PIT_CHANNEL, PERIOD_BY_NS/pitResolution);
     CAN_Init(&can_pal1_instance, &can_pal1_Config0);
     /* Set information about the data to be sent
      *  - Standard message ID

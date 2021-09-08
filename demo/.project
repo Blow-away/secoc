@@ -132,6 +132,11 @@
 			<location>C:/NXP/S32DS_Power_v2.1/S32DS/software/S32_SDK_S32PA_RTM_3.0.0/platform/drivers/inc/pins_driver.h</location>
 		</link>
 		<link>
+			<name>SDK/platform/drivers/inc/pit_driver.h</name>
+			<type>1</type>
+			<location>C:/NXP/S32DS_Power_v2.1/S32DS/software/S32_SDK_S32PA_RTM_3.0.0/platform/drivers/inc/pit_driver.h</location>
+		</link>
+		<link>
 			<name>SDK/platform/pal/inc/can_pal.h</name>
 			<type>1</type>
 			<location>C:/NXP/S32DS_Power_v2.1/S32DS/software/S32_SDK_S32PA_RTM_3.0.0/platform/pal/inc/can_pal.h</location>
@@ -140,6 +145,16 @@
 			<name>SDK/platform/pal/inc/can_pal_mapping.h</name>
 			<type>1</type>
 			<location>C:/NXP/S32DS_Power_v2.1/S32DS/software/S32_SDK_S32PA_RTM_3.0.0/platform/pal/inc/can_pal_mapping.h</location>
+		</link>
+		<link>
+			<name>SDK/platform/pal/inc/timing_pal.h</name>
+			<type>1</type>
+			<location>C:/NXP/S32DS_Power_v2.1/S32DS/software/S32_SDK_S32PA_RTM_3.0.0/platform/pal/inc/timing_pal.h</location>
+		</link>
+		<link>
+			<name>SDK/platform/pal/inc/timing_pal_mapping.h</name>
+			<type>1</type>
+			<location>C:/NXP/S32DS_Power_v2.1/S32DS/software/S32_SDK_S32PA_RTM_3.0.0/platform/pal/inc/timing_pal_mapping.h</location>
 		</link>
 		<link>
 			<name>SDK/platform/devices/MPC5748G/include/MPC5748G.h</name>
@@ -217,9 +232,39 @@
 			<location>C:/NXP/S32DS_Power_v2.1/S32DS/software/S32_SDK_S32PA_RTM_3.0.0/platform/drivers/src/interrupt/interrupt_manager_MPC57xx.c</location>
 		</link>
 		<link>
+			<name>SDK/platform/drivers/src/pit/pit_driver.c</name>
+			<type>1</type>
+			<location>C:/NXP/S32DS_Power_v2.1/S32DS/software/S32_SDK_S32PA_RTM_3.0.0/platform/drivers/src/pit/pit_driver.c</location>
+		</link>
+		<link>
+			<name>SDK/platform/drivers/src/pit/pit_hw_access.c</name>
+			<type>1</type>
+			<location>C:/NXP/S32DS_Power_v2.1/S32DS/software/S32_SDK_S32PA_RTM_3.0.0/platform/drivers/src/pit/pit_hw_access.c</location>
+		</link>
+		<link>
+			<name>SDK/platform/drivers/src/pit/pit_hw_access.h</name>
+			<type>1</type>
+			<location>C:/NXP/S32DS_Power_v2.1/S32DS/software/S32_SDK_S32PA_RTM_3.0.0/platform/drivers/src/pit/pit_hw_access.h</location>
+		</link>
+		<link>
 			<name>SDK/platform/pal/src/can/can_pal.c</name>
 			<type>1</type>
 			<location>C:/NXP/S32DS_Power_v2.1/S32DS/software/S32_SDK_S32PA_RTM_3.0.0/platform/pal/src/can/can_pal.c</location>
+		</link>
+		<link>
+			<name>SDK/platform/pal/src/timing/timing_irq.c</name>
+			<type>1</type>
+			<location>C:/NXP/S32DS_Power_v2.1/S32DS/software/S32_SDK_S32PA_RTM_3.0.0/platform/pal/src/timing/timing_irq.c</location>
+		</link>
+		<link>
+			<name>SDK/platform/pal/src/timing/timing_irq.h</name>
+			<type>1</type>
+			<location>C:/NXP/S32DS_Power_v2.1/S32DS/software/S32_SDK_S32PA_RTM_3.0.0/platform/pal/src/timing/timing_irq.h</location>
+		</link>
+		<link>
+			<name>SDK/platform/pal/src/timing/timing_pal.c</name>
+			<type>1</type>
+			<location>C:/NXP/S32DS_Power_v2.1/S32DS/software/S32_SDK_S32PA_RTM_3.0.0/platform/pal/src/timing/timing_pal.c</location>
 		</link>
 		<link>
 			<name>SDK/platform/drivers/src/clock/MPC57xx/cgm_hw_access.h</name>

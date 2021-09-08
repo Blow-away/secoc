@@ -11,7 +11,8 @@
 #include "Std_Types.h"
 #include "ComStack_Types.h"
 
-
+extern uint8 spdu[];
+extern int len[];
 
 void send_result(PduIdType TxPduId, Std_ReturnType result);
 

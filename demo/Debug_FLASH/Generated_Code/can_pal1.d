@@ -32,15 +32,20 @@ Generated_Code/can_pal1.o: ../Generated_Code/can_pal1.c \
  C:/NXP/S32DS_Power_v2.1/S32DS/build_tools/e200_ewl2/EWL_C/include/ewl_rsize_t.h \
  C:/NXP/S32DS_Power_v2.1/S32DS/software/S32_SDK_S32PA_RTM_3.0.0/rtos/osif/osif.h \
  C:/NXP/S32DS_Power_v2.1/S32DS/software/S32_SDK_S32PA_RTM_3.0.0/platform/pal/inc/can_pal.h \
- F:/secoc/demo/Generated_Code/can_pal_cfg.h \
+ C:/Users/suche/Documents/GitHub/Secoc/demo/Generated_Code/can_pal_cfg.h \
  C:/NXP/S32DS_Power_v2.1/S32DS/software/S32_SDK_S32PA_RTM_3.0.0/platform/pal/inc/can_pal_mapping.h \
  C:/NXP/S32DS_Power_v2.1/S32DS/software/S32_SDK_S32PA_RTM_3.0.0/platform/drivers/inc/flexcan_driver.h \
  C:/NXP/S32DS_Power_v2.1/S32DS/software/S32_SDK_S32PA_RTM_3.0.0/platform/drivers/inc/edma_driver.h \
  C:/NXP/S32DS_Power_v2.1/S32DS/software/S32_SDK_S32PA_RTM_3.0.0/platform/devices/callbacks.h \
+ C:/NXP/S32DS_Power_v2.1/S32DS/software/S32_SDK_S32PA_RTM_3.0.0/platform/pal/inc/timing_pal.h \
+ C:/NXP/S32DS_Power_v2.1/S32DS/software/S32_SDK_S32PA_RTM_3.0.0/platform/pal/inc/timing_pal_mapping.h \
+ C:/Users/suche/Documents/GitHub/Secoc/demo/Generated_Code/timing_pal_cfg.h \
+ C:/NXP/S32DS_Power_v2.1/S32DS/software/S32_SDK_S32PA_RTM_3.0.0/platform/drivers/inc/pit_driver.h \
  C:/NXP/S32DS_Power_v2.1/S32DS/software/S32_SDK_S32PA_RTM_3.0.0/platform/devices/MPC5748G/startup/system_MPC5748G.h \
  ../Generated_Code/dmaController1.h ../Generated_Code/pin_mux.h \
  C:/NXP/S32DS_Power_v2.1/S32DS/software/S32_SDK_S32PA_RTM_3.0.0/platform/drivers/inc/pins_driver.h \
- C:/NXP/S32DS_Power_v2.1/S32DS/software/S32_SDK_S32PA_RTM_3.0.0/platform/drivers/inc/../src/pins/siul2/pins_siul2_driver.h
+ C:/NXP/S32DS_Power_v2.1/S32DS/software/S32_SDK_S32PA_RTM_3.0.0/platform/drivers/inc/../src/pins/siul2/pins_siul2_driver.h \
+ ../Generated_Code/timing_pal1.h
 
 C:/NXP/S32DS_Power_v2.1/S32DS/build_tools/e200_ewl2/EWL_C/include/lib_c99.prefix:
 
@@ -110,7 +115,7 @@ C:/NXP/S32DS_Power_v2.1/S32DS/software/S32_SDK_S32PA_RTM_3.0.0/rtos/osif/osif.h:
 
 C:/NXP/S32DS_Power_v2.1/S32DS/software/S32_SDK_S32PA_RTM_3.0.0/platform/pal/inc/can_pal.h:
 
-F:/secoc/demo/Generated_Code/can_pal_cfg.h:
+C:/Users/suche/Documents/GitHub/Secoc/demo/Generated_Code/can_pal_cfg.h:
 
 C:/NXP/S32DS_Power_v2.1/S32DS/software/S32_SDK_S32PA_RTM_3.0.0/platform/pal/inc/can_pal_mapping.h:
 
@@ -119,6 +124,14 @@ C:/NXP/S32DS_Power_v2.1/S32DS/software/S32_SDK_S32PA_RTM_3.0.0/platform/drivers/
 C:/NXP/S32DS_Power_v2.1/S32DS/software/S32_SDK_S32PA_RTM_3.0.0/platform/drivers/inc/edma_driver.h:
 
 C:/NXP/S32DS_Power_v2.1/S32DS/software/S32_SDK_S32PA_RTM_3.0.0/platform/devices/callbacks.h:
+
+C:/NXP/S32DS_Power_v2.1/S32DS/software/S32_SDK_S32PA_RTM_3.0.0/platform/pal/inc/timing_pal.h:
+
+C:/NXP/S32DS_Power_v2.1/S32DS/software/S32_SDK_S32PA_RTM_3.0.0/platform/pal/inc/timing_pal_mapping.h:
+
+C:/Users/suche/Documents/GitHub/Secoc/demo/Generated_Code/timing_pal_cfg.h:
+
+C:/NXP/S32DS_Power_v2.1/S32DS/software/S32_SDK_S32PA_RTM_3.0.0/platform/drivers/inc/pit_driver.h:
 
 C:/NXP/S32DS_Power_v2.1/S32DS/software/S32_SDK_S32PA_RTM_3.0.0/platform/devices/MPC5748G/startup/system_MPC5748G.h:
 
@@ -129,3 +142,5 @@ C:/NXP/S32DS_Power_v2.1/S32DS/software/S32_SDK_S32PA_RTM_3.0.0/platform/devices/
 C:/NXP/S32DS_Power_v2.1/S32DS/software/S32_SDK_S32PA_RTM_3.0.0/platform/drivers/inc/pins_driver.h:
 
 C:/NXP/S32DS_Power_v2.1/S32DS/software/S32_SDK_S32PA_RTM_3.0.0/platform/drivers/inc/../src/pins/siul2/pins_siul2_driver.h:
+
+../Generated_Code/timing_pal1.h:

@@ -119,6 +119,19 @@ Module "can_pal1"  (component can_pal)
    - can_pal1_CAN_InstallEventCallback -Installs a callback function for the IRQ handler.
    - can_pal1_CAN_GetDefaultConfig -Returns the default values for the CAN module.
 
+Module "timing_pal1" (component timing_pal)
+   - timing_pal1_TIMING_Init -Initialize the timer instance and timer channels with value from input configuration structure
+   - timing_pal1_TIMING_Deinit -De-initialize a timer instance
+   - timing_pal1_TIMING_StartChannel -Starts the timer channel counting
+   - timing_pal1_TIMING_StopChannel -Stop the timer channel counting
+   - timing_pal1_TIMING_GetElapsed -Get elapsed ticks
+   - timing_pal1_TIMING_GetRemaining -Get remaining ticks
+   - timing_pal1_TIMING_EnableNotification -Enable channel notifications
+   - timing_pal1_TIMING_DisableNotification -Disable channel notifications
+   - timing_pal1_TIMING_GetResolution -Get tick resolution
+   - timing_pal1_TIMING_GetMaxPeriod -Get max period in engineering units
+   - timing_pal1_TIMING_InstallCallback -Install new callback function and callback parameter for timer channel
+
 Module "Cpu"       (component MPC5748G_176)
    - Cpu_SystemInit -This method configures the oscillator (PLL) that is part of the microcontroller device. SystemInit is 
                 called from startup_device file.
