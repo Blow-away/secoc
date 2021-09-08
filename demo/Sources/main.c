@@ -247,6 +247,7 @@ void clock_callback(void * userData){
 	for(int i=0;i< SECOC_NUM_OF_TX_IPDU;++i){
 		sendCan(i);
 	}
+	SecOC_MainFunctionRx();
 }
 
 
@@ -274,6 +275,7 @@ int main(void)
 	/* Start PIT channel 0 counting with the period is 1 second,
        the period in tick = the period in nanosecond / PIT tick resolution in nanosecond */
 	TIMING_StartChannel(&timing_pal1_instance, PIT_CHANNEL, PERIOD_BY_NS/pitResolution);
+
     CAN_Init(&can_pal1_instance, &can_pal1_Config0);
     /* Set information about the data to be sent
      *  - Standard message ID
@@ -298,19 +300,28 @@ int main(void)
         CAN_Receive(&can_pal1_instance, RX_MAILBOX, &recvMsg);
         /* Wait until the previous FlexCAN receive is completed */
         while(CAN_GetTransferStatus(&can_pal1_instance, RX_MAILBOX) == STATUS_BUSY);
+
+        PduInfoType pit={
+        		.SduDataPtr=recvMsg.data,
+				.SduLength=recvMsg.length
+        };
+
+        PduR_CanIfRxIndication(recvMsg.id,pit);
+
+
         /* Check the received message ID and payload */
-        if((recvMsg.data[0] == LED0_CHANGE_REQUESTED) &&
-            recvMsg.id == RX_MSG_ID)
-        {
-            /* Toggle output value LED1 */
-            PINS_DRV_TogglePins(LED_PORT, (1 << LED0));
-        }
-        else if((recvMsg.data[0] == LED1_CHANGE_REQUESTED) &&
-                recvMsg.id == RX_MSG_ID)
-        {
-            /* Toggle output value LED0 */
-            PINS_DRV_TogglePins(LED_PORT, (1 << LED1));
-        }
+//        if((recvMsg.data[0] == LED0_CHANGE_REQUESTED) &&
+//            recvMsg.id == RX_MSG_ID)
+//        {
+//            /* Toggle output value LED1 */
+//            PINS_DRV_TogglePins(LED_PORT, (1 << LED0));
+//        }
+//        else if((recvMsg.data[0] == LED1_CHANGE_REQUESTED) &&
+//                recvMsg.id == RX_MSG_ID)
+//        {
+//            /* Toggle output value LED0 */
+//            PINS_DRV_TogglePins(LED_PORT, (1 << LED1));
+//        }
     }
   /*** Don't write any code pass this line, or it will be deleted during code generation. ***/
   /*** RTOS startup code. Macro PEX_RTOS_START is defined by the RTOS component. DON'T MODIFY THIS CODE!!! ***/

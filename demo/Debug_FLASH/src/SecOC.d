@@ -2,9 +2,10 @@ src/SecOC.o: ../src/SecOC.c \
  C:/NXP/S32DS_Power_v2.1/S32DS/build_tools/e200_ewl2/EWL_C/include/lib_c99.prefix \
  C:/NXP/S32DS_Power_v2.1/S32DS/build_tools/e200_ewl2/EWL_C/include/common.prefix \
  C:/NXP/S32DS_Power_v2.1/S32DS/build_tools/e200_ewl2/EWL_C/include/ewl_c_version.h \
- F:/secoc/demo/header/SecOC.h F:/secoc/demo/header/Std_Types.h \
- F:/secoc/demo/header/ComStack_Types.h \
- F:/secoc/demo/header/Platform_Types.h \
+ C:/Users/suche/Documents/GitHub/Secoc/demo/header/SecOC.h \
+ C:/Users/suche/Documents/GitHub/Secoc/demo/header/Std_Types.h \
+ C:/Users/suche/Documents/GitHub/Secoc/demo/header/ComStack_Types.h \
+ C:/Users/suche/Documents/GitHub/Secoc/demo/header/Platform_Types.h \
  C:/NXP/S32DS_Power_v2.1/S32DS/build_tools/e200_ewl2/EWL_C/include/string.h \
  C:/NXP/S32DS_Power_v2.1/S32DS/build_tools/e200_ewl2/EWL_C/include/ansi_parms.h \
  C:/NXP/S32DS_Power_v2.1/S32DS/build_tools/e200_ewl2/EWL_C/include/ewlGlobals.h \
@@ -16,9 +17,10 @@ src/SecOC.o: ../src/SecOC.c \
  C:/NXP/S32DS_Power_v2.1/S32DS/build_tools/e200_ewl2/EWL_C/include/ewl_lib_ext1.h \
  C:/NXP/S32DS_Power_v2.1/S32DS/build_tools/e200_ewl2/EWL_C/include/ewl_rsize_t.h \
  C:/NXP/S32DS_Power_v2.1/S32DS/build_tools/e200_ewl2/EWL_C/include/string_api.h \
- F:/secoc/demo/header/SecOC_Types.h \
+ C:/Users/suche/Documents/GitHub/Secoc/demo/header/SecOC_Types.h \
  C:/NXP/S32DS_Power_v2.1/S32DS/build_tools/e200_ewl2/EWL_C/include/stdbool.h \
- F:/secoc/demo/header/PduR_SecOC.h F:/secoc/demo/header/SecOC_Cfg.h
+ C:/Users/suche/Documents/GitHub/Secoc/demo/header/PduR_SecOC.h \
+ C:/Users/suche/Documents/GitHub/Secoc/demo/header/SecOC_Cfg.h
 
 C:/NXP/S32DS_Power_v2.1/S32DS/build_tools/e200_ewl2/EWL_C/include/lib_c99.prefix:
 
@@ -26,13 +28,13 @@ C:/NXP/S32DS_Power_v2.1/S32DS/build_tools/e200_ewl2/EWL_C/include/common.prefix:
 
 C:/NXP/S32DS_Power_v2.1/S32DS/build_tools/e200_ewl2/EWL_C/include/ewl_c_version.h:
 
-F:/secoc/demo/header/SecOC.h:
+C:/Users/suche/Documents/GitHub/Secoc/demo/header/SecOC.h:
 
-F:/secoc/demo/header/Std_Types.h:
+C:/Users/suche/Documents/GitHub/Secoc/demo/header/Std_Types.h:
 
-F:/secoc/demo/header/ComStack_Types.h:
+C:/Users/suche/Documents/GitHub/Secoc/demo/header/ComStack_Types.h:
 
-F:/secoc/demo/header/Platform_Types.h:
+C:/Users/suche/Documents/GitHub/Secoc/demo/header/Platform_Types.h:
 
 C:/NXP/S32DS_Power_v2.1/S32DS/build_tools/e200_ewl2/EWL_C/include/string.h:
 
@@ -56,10 +58,10 @@ C:/NXP/S32DS_Power_v2.1/S32DS/build_tools/e200_ewl2/EWL_C/include/ewl_rsize_t.h:
 
 C:/NXP/S32DS_Power_v2.1/S32DS/build_tools/e200_ewl2/EWL_C/include/string_api.h:
 
-F:/secoc/demo/header/SecOC_Types.h:
+C:/Users/suche/Documents/GitHub/Secoc/demo/header/SecOC_Types.h:
 
 C:/NXP/S32DS_Power_v2.1/S32DS/build_tools/e200_ewl2/EWL_C/include/stdbool.h:
 
-F:/secoc/demo/header/PduR_SecOC.h:
+C:/Users/suche/Documents/GitHub/Secoc/demo/header/PduR_SecOC.h:
 
-F:/secoc/demo/header/SecOC_Cfg.h:
+C:/Users/suche/Documents/GitHub/Secoc/demo/header/SecOC_Cfg.h:

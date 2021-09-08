@@ -149,7 +149,7 @@ void verify(){
 
 }
 void SecOC_MainFunctionRx(){
-	//测试暂用
+	// 测试暂用
 	// SecOC是否已初始化
 	if (_secOCState != SECOC_INIT)
 		return;
