@@ -1,7 +1,7 @@
 /*
  * SecOC_Types.h
  *
- *  Created on: 2021Äê9ÔÂ7ÈÕ
+ *  Created on: 2021å¹´9æœˆ7æ—¥
  *      Author: zhao chenyang
  */
 
@@ -11,56 +11,56 @@
 #include <stdbool.h>
 #include "Platform_Types.h"
 
-typedef enum { //SecOC×´Ì¬
-    SECOC_UNINIT, //SecOCÎ´³õÊ¼»¯
-    SECOC_INIT    //SecOC³õÊ¼»¯
+typedef enum { //SecOCçŠ¶æ€
+    SECOC_UNINIT, //SecOCæœªåˆå§‹åŒ–
+    SECOC_INIT    //SecOCåˆå§‹åŒ–
 } SecOC_StateType;
 
 typedef struct {
-    uint8 addr_st; // a/spduÆğÊ¼µØÖ·
-    uint8 addr_cpy; // a/spduËùÕ¼ÈİÁ¿(×Ö½Ú)
-    uint8 apduBlen; // apdu³¤¶È
-    uint8 spduBlen; // spdu³¤¶È
-    type_t type; // ±¨ÎÄÀàĞÍ(direct trigger tp upperTp)
-    uint8 abc; // ÈÏÖ¤ÓÃ¼ÆÊıÆ÷
-    uint8 slock; // tpÄ£Ê½ÏÂ µ×²ãÍ¨ĞÅÄ£¿éĞèÒªËø¶¨spduÇøÓò ²»ÔÊĞí¶ÁĞ´
+    uint8 addr_st; // a/spduèµ·å§‹åœ°å€
+    uint8 addr_cpy; // a/spduæ‰€å å®¹é‡(å­—èŠ‚)
+    uint8 apduBlen; // apdué•¿åº¦
+    uint8 spduBlen; // spdué•¿åº¦
+    type_t type; // æŠ¥æ–‡ç±»å‹(direct trigger tp upperTp)
+    uint8 abc; // è®¤è¯ç”¨è®¡æ•°å™¨
+    uint8 slock; // tpæ¨¡å¼ä¸‹ åº•å±‚é€šä¿¡æ¨¡å—éœ€è¦é”å®šspduåŒºåŸŸ ä¸å…è®¸è¯»å†™
 } SecOCintermediate_type;
 
 typedef struct {
-    uint8 addr_st;  // ´æ´¢¿Õ¼äa/spduÆğÊ¼ÇøÓò
-    uint8 addr_cpy;  // ´æ´¢¿Õ¼äa/spduËùÕ¼ÈİÁ¿  8*(µ¥/¶à)
-    uint8 apduBlen;  // apduËùÓÃ³¤¶È
-    uint8 spduBlen;  // spduËùÓÃ³¤¶È
-    type_t type;  // ±¨ÎÄÀàĞÍenum¡¾drirect, trigger, tp, upperTp¡¿
-    uint8 abc; // ÑéÖ¤ÓÃ¼ÆÊıÆ÷
-    uint8 avac; // ÑéÖ¤ÓÃ¼ÆÊıÆ÷
-    uint8 slock;  //tpÄ£Ê½ÏÂ µ×²ãÍ¨ĞÅÄ£¿éĞèÒªËø¶¨spduÇøÓò ²»ÔÊĞí¶ÁĞ´
-    uint8 rxall; //tpÊı¾İÊÇ·ñÊÕÍêÕû£¬³õÊ¼FALSE
+    uint8 addr_st;  // å­˜å‚¨ç©ºé—´a/spduèµ·å§‹åŒºåŸŸ
+    uint8 addr_cpy;  // å­˜å‚¨ç©ºé—´a/spduæ‰€å å®¹é‡  8*(å•/å¤š)
+    uint8 apduBlen;  // apduæ‰€ç”¨é•¿åº¦
+    uint8 spduBlen;  // spduæ‰€ç”¨é•¿åº¦
+    type_t type;  // æŠ¥æ–‡ç±»å‹enumã€drirect, trigger, tp, upperTpã€‘
+    uint8 abc; // éªŒè¯ç”¨è®¡æ•°å™¨
+    uint8 avac; // éªŒè¯ç”¨è®¡æ•°å™¨
+    uint8 slock;  //tpæ¨¡å¼ä¸‹ åº•å±‚é€šä¿¡æ¨¡å—éœ€è¦é”å®šspduåŒºåŸŸ ä¸å…è®¸è¯»å†™
+    uint8 rxall; //tpæ•°æ®æ˜¯å¦æ”¶å®Œæ•´ï¼Œåˆå§‹FALSE
 }SecOCintermediateRx_type;
 
-typedef enum { //ĞÂ½ÓÊÕ±¨ÎÄµÄ´¦Àí·½Ê½
-    QUEUE,   //ÅÅ¶Ó
-    REJECT,  // Ö±½Ó¶ªÆú
-    REPLACE  // Ìæ»»µ±Ç°Öµ
+typedef enum { //æ–°æ¥æ”¶æŠ¥æ–‡çš„å¤„ç†æ–¹å¼
+    QUEUE,   //æ’é˜Ÿ
+    REJECT,  // ç›´æ¥ä¸¢å¼ƒ
+    REPLACE  // æ›¿æ¢å½“å‰å€¼
 } SecOCReceptionOverflowStrategy_type;
 
-typedef enum {      // ÑéÖ¤×´Ì¬Í¨ÖªÄ£Ê½
-    BOTH,           // ÑéÖ¤³É¹¦Ê§°Ü¶¼Í¨Öª
-    FAILURE_ONLY,   // ÑéÖ¤Ê§°ÜÍ¨Öª
-    NONE            // ÑéÖ¤³É¹¦Ê§°Ü¶¼²»Í¨Öª
+typedef enum {      // éªŒè¯çŠ¶æ€é€šçŸ¥æ¨¡å¼
+    BOTH,           // éªŒè¯æˆåŠŸå¤±è´¥éƒ½é€šçŸ¥
+    FAILURE_ONLY,   // éªŒè¯å¤±è´¥é€šçŸ¥
+    NONE            // éªŒè¯æˆåŠŸå¤±è´¥éƒ½ä¸é€šçŸ¥
 } SecOCVerificationStatusPropagationMode_type;
 
 typedef struct {
     uint32 CsmJobId;
-} CsmJob_type; //´Ë½á¹¹Ìå¿ÉÄÜÔÚcsmÄ£¿éÖĞ
+} CsmJob_type; //æ­¤ç»“æ„ä½“å¯èƒ½åœ¨csmæ¨¡å—ä¸­
 
 typedef struct {
     uint32 SecOCBufferLength;        //0-4294967295 1
 } SecOCSameBufferPduCollection_type; //0..*
 
 typedef enum {
-    CFUNC,      //Ê¹ÓÃº¯ÊıÊ½½Ó¿Ú
-    RTE         //Ê¹ÓÃÔËĞĞÊ±»·¾³½Ó¿Ú
+    CFUNC,      //ä½¿ç”¨å‡½æ•°å¼æ¥å£
+    RTE         //ä½¿ç”¨è¿è¡Œæ—¶ç¯å¢ƒæ¥å£
 } SecOCQueryFreshnessValue_type;
 
 typedef struct {
@@ -73,54 +73,54 @@ typedef struct {
 } SecOCPdu_type;
 
 typedef struct {
-    SecOCQueryFreshnessValue_type SecOCPduType; //[SECOC_IFPDU/SECOC_TPPDU] Ã¶¾ÙÀàĞÍ  ±¨ÎÄÀàĞÍ
+    SecOCQueryFreshnessValue_type SecOCPduType; //[SECOC_IFPDU/SECOC_TPPDU] æšä¸¾ç±»å‹  æŠ¥æ–‡ç±»å‹
     //1
-    const SecOCPdu_type *const SecOCRxAuthenticLayerPduRef;     // Ìî ¡°¿Õ¡± £¬ÔÛ²»¿¼ÂÇ
+    const SecOCPdu_type *const SecOCRxAuthenticLayerPduRef;     // å¡« â€œç©ºâ€ ï¼Œå’±ä¸è€ƒè™‘
     //1
 } SecOCRxAuthenticPduLayer_type;
 
 typedef struct {
-    uint32 SecOCSecuredRxPduLength; //[0..4294967295]  ²ÎÓë¼ÆËãmacµÄapdu³¤¶È
+    uint32 SecOCSecuredRxPduLength; //[0..4294967295]  å‚ä¸è®¡ç®—macçš„apdué•¿åº¦
     //1 This parameter defines the length (in bytes) of the area within the Pdu which is secured
-    uint32 SecOCSecuredRxPduOffset; //[0..4294967295]  ²ÎÓë¼ÆËãmacµÄapduÆğÊ¼Î»ÖÃ
+    uint32 SecOCSecuredRxPduOffset; //[0..4294967295]  å‚ä¸è®¡ç®—macçš„apduèµ·å§‹ä½ç½®
     //1 This parameter defines the start position (offset in bytes) of the area within the Pdu which is secured
-} SecOCRxPduSecuredArea_type; //¾ö¶¨ÄÄ¶Î²ÎÓë¼ÆËãmac  Èô²»´æÔÚÔòÈ«²¿authentic
+} SecOCRxPduSecuredArea_type; //å†³å®šå“ªæ®µå‚ä¸è®¡ç®—mac  è‹¥ä¸å­˜åœ¨åˆ™å…¨éƒ¨authentic
 //0..1
 
 typedef struct {
-    uint8 SecOCAuthPduHeaderLength; //[0..4]                ¶¯Ì¬³¤¶Èpdu²ÎÊı£¬¾ö¶¨apdu³¤¶È£¬ Ôİ²»¿¼ÂÇ
+    uint8 SecOCAuthPduHeaderLength; //[0..4]                åŠ¨æ€é•¿åº¦pduå‚æ•°ï¼Œå†³å®šapdué•¿åº¦ï¼Œ æš‚ä¸è€ƒè™‘
     //0..1
-    uint16 SecOCRxSecuredLayerPduId; //[0..65535]           id, Í¬½á¹¹ÌåË÷ÒıºÅ
+    uint16 SecOCRxSecuredLayerPduId; //[0..65535]           id, åŒç»“æ„ä½“ç´¢å¼•å·
     //1
-    boolean SecOCSecuredRxPduVerification;  //              ¾ö¶¨±¨ÎÄÊÇ·ñĞèÒªÑéÖ¤£¬Èô=false£¬ÔòÖ±½ÓÌáÈ¡apdu£¬
+    boolean SecOCSecuredRxPduVerification;  //              å†³å®šæŠ¥æ–‡æ˜¯å¦éœ€è¦éªŒè¯ï¼Œè‹¥=falseï¼Œåˆ™ç›´æ¥æå–apduï¼Œ
     //1
-    const SecOCPdu_type *const SecOCRxSecuredLayerPduRef; //Ìî¡°¿Õ¡±£¬Ôİ²»¿¼ÂÇ
+    const SecOCPdu_type *const SecOCRxSecuredLayerPduRef; //å¡«â€œç©ºâ€ï¼Œæš‚ä¸è€ƒè™‘
     //1
 } SecOCRxSecuredPdu_type;
 
 typedef struct {
-    uint8 SecOCAuthPduHeaderLength; //[0..4]                ¶¯Ì¬³¤¶Èpdu²ÎÊı£¬¾ö¶¨apdu³¤¶È£¬ Ôİ²»¿¼ÂÇ
+    uint8 SecOCAuthPduHeaderLength; //[0..4]                åŠ¨æ€é•¿åº¦pduå‚æ•°ï¼Œå†³å®šapdué•¿åº¦ï¼Œ æš‚ä¸è€ƒè™‘
     //0..1
-    uint16 SecOCRxAuthenticPduId; //[0..65535]              id, Í¬½á¹¹ÌåË÷ÒıºÅ
+    uint16 SecOCRxAuthenticPduId; //[0..65535]              id, åŒç»“æ„ä½“ç´¢å¼•å·
     //1
-    const SecOCPdu_type *const SecOCRxAuthenticPduRef;    //Ìî¡°¿Õ¡±£¬Ôİ²»¿¼ÂÇ
+    const SecOCPdu_type *const SecOCRxAuthenticPduRef;    //å¡«â€œç©ºâ€ï¼Œæš‚ä¸è€ƒè™‘
     //1
-} SecOCRxAuthenticPdu_type;  //·ÖÖ¡Ä£Ê½ Ôİ²»¿¼ÂÇ
+} SecOCRxAuthenticPdu_type;  //åˆ†å¸§æ¨¡å¼ æš‚ä¸è€ƒè™‘
 
 typedef struct {
-    uint16 SecOCRxCryptographicPduId; //[0..65535]          id, Í¬½á¹¹ÌåË÷ÒıºÅ
+    uint16 SecOCRxCryptographicPduId; //[0..65535]          id, åŒç»“æ„ä½“ç´¢å¼•å·
     //1
-    const SecOCPdu_type *const SecOCRxCryptographicPduRef;//Ìî¡°¿Õ¡±£¬Ôİ²»¿¼ÂÇ
+    const SecOCPdu_type *const SecOCRxCryptographicPduRef;//å¡«â€œç©ºâ€ï¼Œæš‚ä¸è€ƒè™‘
     //1
-} SecOCRxCryptographicPdu_type;//·ÖÖ¡Ä£Ê½ Ôİ²»¿¼ÂÇ
+} SecOCRxCryptographicPdu_type;//åˆ†å¸§æ¨¡å¼ æš‚ä¸è€ƒè™‘
 
 typedef struct {
-    uint16 SecOCMessageLinkLen;  //·ÖÖ¡Ê±ÓÃÀ´Ê¶±ğacpdu¹ØÏµ²¿·Ö³¤¶È
+    uint16 SecOCMessageLinkLen;  //åˆ†å¸§æ—¶ç”¨æ¥è¯†åˆ«acpduå…³ç³»éƒ¨åˆ†é•¿åº¦
     /* Length of the Message Linker inside the Authentic I-PDU in bits.
 	1
 	*/
 
-    uint16 SecOCMessageLinkPos;  //·ÖÖ¡Ê±ÓÃÀ´Ê¶±ğacpdu¹ØÏµ²¿·ÖÆğÊ¼Î»ÖÃ
+    uint16 SecOCMessageLinkPos;  //åˆ†å¸§æ—¶ç”¨æ¥è¯†åˆ«acpduå…³ç³»éƒ¨åˆ†èµ·å§‹ä½ç½®
     /* The position of the Message Linker inside the Authentic I-PDU in bits.
 	1
 	*/
@@ -136,69 +136,69 @@ typedef struct {
     //1
     const SecOCUseMessageLink_type SecOCUseMessageLink; //
     //0..1
-} SecOCRxSecuredPduCollection_type;  //·ÖÖ¡Ä£Ê½ Ôİ²»¿¼ÂÇ
+} SecOCRxSecuredPduCollection_type;  //åˆ†å¸§æ¨¡å¼ æš‚ä¸è€ƒè™‘
 
 
-typedef struct {  // ÒÔÏÂ³ÉÔ±Ö»ÄÜÅäÖÃÒ»¸ö
-    const SecOCRxSecuredPdu_type SecOCRxSecuredPdu; //  ·Ç·ÖÖ¡Ä£Ê½
+typedef struct {  // ä»¥ä¸‹æˆå‘˜åªèƒ½é…ç½®ä¸€ä¸ª
+    const SecOCRxSecuredPdu_type SecOCRxSecuredPdu; //  éåˆ†å¸§æ¨¡å¼
     //0..1
-    const SecOCRxSecuredPduCollection_type SecOCRxSecuredPduCollection; // ·ÖÖ¡Ä£Ê½  Ôİ²»¿¼ÂÇ
+    const SecOCRxSecuredPduCollection_type SecOCRxSecuredPduCollection; // åˆ†å¸§æ¨¡å¼  æš‚ä¸è€ƒè™‘
     //0..1
 } SecOCRxSecuredPduLayer_type;
 
 typedef struct {
-    uint16 SecOCAuthDataFreshnessLen; //[0..65535](default value --)            ÔİÊ±¹Ì¶¨²»ÅäÖÃ£¬ Êı¾İ²¿·Ö×öfvµÄ³¤¶È
+    uint16 SecOCAuthDataFreshnessLen; //[0..65535](default value --)            æš‚æ—¶å›ºå®šä¸é…ç½®ï¼Œ æ•°æ®éƒ¨åˆ†åšfvçš„é•¿åº¦
     //0..1
 
-    uint16 SecOCAuthDataFreshnessStartPosition; //[0..65535](default value --)  ÔİÊ±¹Ì¶¨²»ÅäÖÃ£¬ Êı¾İ²¿·Ö×öfvµÄÆğÊ¼Î»ÖÃ
+    uint16 SecOCAuthDataFreshnessStartPosition; //[0..65535](default value --)  æš‚æ—¶å›ºå®šä¸é…ç½®ï¼Œ æ•°æ®éƒ¨åˆ†åšfvçš„èµ·å§‹ä½ç½®
     //0..1
 
-    uint16 SecOCAuthenticationBuildAttempts; //[0..65535](default value --)     µ¥¸öspduÈÏÖ¤¿É³¢ÊÔµÄ´ÎÊıÉÏÏŞ
+    uint16 SecOCAuthenticationBuildAttempts; //[0..65535](default value --)     å•ä¸ªspduè®¤è¯å¯å°è¯•çš„æ¬¡æ•°ä¸Šé™
     //0..1
 
-    uint16 SecOCAuthenticationVerifyAttempts; //[0..65535](default value 0)     µ¥¸öspduÑéÖ¤¿É³¢ÊÔµÄ´ÎÊıÉÏÏŞ
+    uint16 SecOCAuthenticationVerifyAttempts; //[0..65535](default value 0)     å•ä¸ªspduéªŒè¯å¯å°è¯•çš„æ¬¡æ•°ä¸Šé™
     //0..1
 
-    uint16 SecOCAuthInfoTruncLength; //[1..65535](default value --)             ²Ã¼ômac³¤¶È£¬µ÷ÓÃcsm_Macverify´«Èë
+    uint16 SecOCAuthInfoTruncLength; //[1..65535](default value --)             è£å‰ªmacé•¿åº¦ï¼Œè°ƒç”¨csm_Macverifyä¼ å…¥
     //1
 
-    uint16 SecOCDataId; //[0..65535](default value --)                          Éú³ÉmacÊ±Êı¾İÒ»²¿·Ö
+    uint16 SecOCDataId; //[0..65535](default value --)                          ç”Ÿæˆmacæ—¶æ•°æ®ä¸€éƒ¨åˆ†
     //1
 
-    uint16 SecOCFreshnessValueId; //[0..65535](default value --)                ĞÂÏÊÖµid£¬¹¹Ôìfv()´«Èë
+    uint16 SecOCFreshnessValueId; //[0..65535](default value --)                æ–°é²œå€¼idï¼Œæ„é€ fv()ä¼ å…¥
     //1
 
-    uint8 SecOCFreshnessValueLength; //[0..64](default value --)                ĞÂÏÊÖµÍêÕû³¤¶È£¬¹¹Ôìfv()´«Èë
+    uint8 SecOCFreshnessValueLength; //[0..64](default value --)                æ–°é²œå€¼å®Œæ•´é•¿åº¦ï¼Œæ„é€ fv()ä¼ å…¥
     //1
 
-    uint8 SecOCFreshnessValueTruncLength; //[0..64](default value --)           ²Ã¼ôĞÂÏÊÖµ³¤¶È£¬ ¹¹Ôìfv()Ê±ĞèÒª´«Èë
+    uint8 SecOCFreshnessValueTruncLength; //[0..64](default value --)           è£å‰ªæ–°é²œå€¼é•¿åº¦ï¼Œ æ„é€ fv()æ—¶éœ€è¦ä¼ å…¥
     //1
 
-    SecOCReceptionOverflowStrategy_type SecOCReceptionOverflowStrategy; //[QUEUE/REJECT/REPLACE] Êı¾İÀàĞÍ ÔİÊ±¹Ì¶¨REPLACE  ĞÂ±¨ÎÄ¸²¸Ç¾É±¨ÎÄÊı¾İ
+    SecOCReceptionOverflowStrategy_type SecOCReceptionOverflowStrategy; //[QUEUE/REJECT/REPLACE] æ•°æ®ç±»å‹ æš‚æ—¶å›ºå®šREPLACE  æ–°æŠ¥æ–‡è¦†ç›–æ—§æŠ¥æ–‡æ•°æ®
     //1
 
-    uint16 SecOCReceptionQueueSize; //[1..65535](default value --)              Ìî¿Õ£¬½ÓÊÕ¶ÓÁĞ³¤¶È£¬Ôİ²»¿¼ÂÇ
+    uint16 SecOCReceptionQueueSize; //[1..65535](default value --)              å¡«ç©ºï¼Œæ¥æ”¶é˜Ÿåˆ—é•¿åº¦ï¼Œæš‚ä¸è€ƒè™‘
     //0..1
 
-    boolean SecOCUseAuthDataFreshness; //(default value false)                  ÔİÊ±¹Ì¶¨false
+    boolean SecOCUseAuthDataFreshness; //(default value false)                  æš‚æ—¶å›ºå®šfalse
     //1
 
-    SecOCVerificationStatusPropagationMode_type SecOCVerificationStatusPropagationMode; //[BOTH/FAILURE_ONLY/NONE] Ã¶¾ÙÀàĞÍ Ôİ²»¿¼ÂÇ
+    SecOCVerificationStatusPropagationMode_type SecOCVerificationStatusPropagationMode; //[BOTH/FAILURE_ONLY/NONE] æšä¸¾ç±»å‹ æš‚ä¸è€ƒè™‘
     //1
 
-    const CsmJob_type *const SecOCRxAuthServiceConfigRef; //Symbolic name reference to [ CsmJob ]  µ÷ÓÃcsm_MacverifyÏà¹Ø²ÎÊı Ôİ²»¿¼ÂÇ
+    const CsmJob_type *const SecOCRxAuthServiceConfigRef; //Symbolic name reference to [ CsmJob ]  è°ƒç”¨csm_Macverifyç›¸å…³å‚æ•° æš‚ä¸è€ƒè™‘
     //1
 
-    const SecOCSameBufferPduCollection_type *const SecOCSameBufferPduRef; //Reference to [ SecOCSameBufferPduCollection ]  Ôİ²»¿¼ÂÇ
+    const SecOCSameBufferPduCollection_type *const SecOCSameBufferPduRef; //Reference to [ SecOCSameBufferPduCollection ]  æš‚ä¸è€ƒè™‘
     //0..1
 
-    const SecOCRxAuthenticPduLayer_type SecOCRxAuthenticPduLayer;   //          ±¨ÎÄÀàĞÍ   SECOC_IFPDU/SECOC_TPPDU
+    const SecOCRxAuthenticPduLayer_type SecOCRxAuthenticPduLayer;   //          æŠ¥æ–‡ç±»å‹   SECOC_IFPDU/SECOC_TPPDU
     //1
 
-    const SecOCRxPduSecuredArea_type SecOCRxPduSecuredArea; //                  ÓÃÓÚ¼ÓÃÜµÄÊı¾İ²¿·Ö ³¤¶ÈºÍÆ«ÒÆ
+    const SecOCRxPduSecuredArea_type SecOCRxPduSecuredArea; //                  ç”¨äºåŠ å¯†çš„æ•°æ®éƒ¨åˆ† é•¿åº¦å’Œåç§»
     //0..1
 
-    const SecOCRxSecuredPduLayer_type SecOCRxSecuredPduLayer; //                ·ÖÖ¡Ä£Ê½£¬ÔİÊ±Ö»ÅäÖÃSecOCRxSecuredPdu_type
+    const SecOCRxSecuredPduLayer_type SecOCRxSecuredPduLayer; //                åˆ†å¸§æ¨¡å¼ï¼Œæš‚æ—¶åªé…ç½®SecOCRxSecuredPdu_type
     //1
 
 } SecOCRxPduProcessing_type;

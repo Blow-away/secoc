@@ -1,7 +1,7 @@
 /*
  * SecOC.c
  *
- *  Created on: 2021Äê9ÔÂ6ÈÕ
+ *  Created on: 2021å¹´9æœˆ6æ—¥
  *      Author: zhao chenyang
  */
 
@@ -17,16 +17,16 @@ uint8 spduRx[8*SECOC_NUM_OF_RX_IPDU];
 SecOC_StateType _secOCState = SECOC_INIT;
 
 bool is_legal(PduIdType TxPduId){
-	// ÅĞ¶ÏSecOCÊÇ·ñÒÑ³õÊ¼»¯(_secOCState)
+	// åˆ¤æ–­SecOCæ˜¯å¦å·²åˆå§‹åŒ–(_secOCState)
 	if (SECOC_INIT != _secOCState)
 	{
-		return false; // Î´³õÊ¼»¯
+		return false; // æœªåˆå§‹åŒ–
 	}
 
-	// ÅĞ¶ÏidºÏ·¨ĞÔ£¬³¬¹ı·¢ËÍ±¨ÎÄµÄÅäÖÃÊıÁ¿
+	// åˆ¤æ–­idåˆæ³•æ€§ï¼Œè¶…è¿‡å‘é€æŠ¥æ–‡çš„é…ç½®æ•°é‡
 	if (TxPduId >= SECOC_NUM_OF_TX_IPDU)
 	{
-		return false; //·ÇsecocÄÚtxpduid
+		return false; //ésecocå†…txpduid
 	}
 }
 
@@ -46,32 +46,38 @@ Std_ReturnType SecOC_IfTransmit(PduIdType TxPduId, const PduInfoType *PduInfoPtr
 	return E_OK;
 }
 
+#define bit(i) (1 << i)
+#define addr2uint8p(address, index) (address + (index + 8 - 1) / 8)
+#define testbit(data, index) (bit(index) & data)
+#define setbit(address, index) *addr2uint8p(address, index) |= bit(index % 8)
+#define clearbit(address, index) *addr2uint8p(address, index) &= !bit(index % 8)
 
 Std_ReturnType authenticate(SecOCintermediate_type* SecOCintermediate){
-	//µ÷ÓÃÑéÖ¤
+	Std_ReturnType result;
+	//è°ƒç”¨éªŒè¯
 	return E_OK;
 }
 
 void SecOC_MainFunctionTx(void) {
-    // SecOCÊÇ·ñÒÑ³õÊ¼»¯
+    // SecOCæ˜¯å¦å·²åˆå§‹åŒ–
     if (_secOCState != SECOC_INIT)
         return;
 
-    // ±éÀúËùÓĞapdu´æ´¢¿Õ¼ä
+    // éå†æ‰€æœ‰apduå­˜å‚¨ç©ºé—´
     uint8 idx = 0;
     Std_ReturnType result;
     PduInfoType PduInfo;
     for (; idx < SECOC_NUM_OF_TX_IPDU; idx++)
     {
         SecOCintermediate_type intermediate = SecOCintermediateTx[idx];
-        // Èô´æÔÚÖµÇÒspduÎ´Ëø
+        // è‹¥å­˜åœ¨å€¼ä¸”spduæœªé”
         if (intermediate.apduBlen > 0 && intermediate.slock == 0)
         {
         	authenticate(&intermediate);
         	PduInfo.SduLength = intermediate.apduBlen;
         	PduInfo.SduDataPtr = intermediate.addr_st;
             if (PduInfo.SduLength > 0)
-            { //authenticate ³É¹¦
+            { //authenticate æˆåŠŸ
                 result = PduR_SecOCTransmit(idx, &PduInfo);
             }
         }
@@ -84,11 +90,11 @@ void SecOC_TxConfirmation(PduIdType TxPduId, Std_ReturnType result){
 	if(!is_legal(TxPduId))
 		return;
 
-	//ÊÍ·Åspdu
+	//é‡Šæ”¾spdu
 	SecOCintermediate_type intermediate = SecOCintermediateTx[TxPduId];
 	intermediate.spduBlen = 0;
 
-	// ¼ÌĞø´«µİ
+	// ç»§ç»­ä¼ é€’
 	if (result == E_OK) {
 		PduR_SecOCIfTxConfirmation(TxPduId, result);
 	}
@@ -104,13 +110,13 @@ void  SecOC_RxIndication(PduIdType RxPduId, const PduInfoType* PduInfoPtr){
 	uint8 idx,AuthStartPosition,AuthLen;
 	SecOCRxPduProcessing_type *tmpSecOCRxPduProcessing = &SecOCRxPduProcessing[RxPduId];
 
-	//ÅĞ¶ÏÊÇ·ñÓĞÊı¾İ²¿·Ö×öĞÂÏÊÖµ
+	//åˆ¤æ–­æ˜¯å¦æœ‰æ•°æ®éƒ¨åˆ†åšæ–°é²œå€¼
 	if(tmpSecOCRxPduProcessing->SecOCUseAuthDataFreshness == true){
 		AuthStartPosition = tmpSecOCRxPduProcessing->SecOCAuthDataFreshnessStartPosition;
 		AuthLen = tmpSecOCRxPduProcessing->SecOCAuthDataFreshnessLen;
 	}
 
-	//Ôİ¶¨replace£¬¸²¸Ç·½Ê½	±£´æÁËs-pduºÍa-pdu£¬ÒÔ¼°ËüÃÇµÄ³¤¶È
+	//æš‚å®šreplaceï¼Œè¦†ç›–æ–¹å¼	ä¿å­˜äº†s-pduå’Œa-pduï¼Œä»¥åŠå®ƒä»¬çš„é•¿åº¦
 	switch (tmpSecOCRxPduProcessing->SecOCReceptionOverflowStrategy)
 	{
 	case REPLACE:
@@ -119,16 +125,16 @@ void  SecOC_RxIndication(PduIdType RxPduId, const PduInfoType* PduInfoPtr){
 		SecOCintermediateRx[RxPduId].abc = 0;
 		SecOCintermediateRx[RxPduId].avac = 0;
 		break;
-	case REJECT: // µ±ÓĞÔÚÊ¹ÓÃµÄsecure pdu£¬ ¾Ü¾øĞÂÀ´µÄÊı¾İ
+	case REJECT: // å½“æœ‰åœ¨ä½¿ç”¨çš„secure pduï¼Œ æ‹’ç»æ–°æ¥çš„æ•°æ®
 		if(SecOCintermediateRx[RxPduId].spduBlen == 0){
 			memcpy((uint8 *)(SecOCintermediateRx[RxPduId].spduBlen + spduRx), PduInfoPtr->SduDataPtr, PduInfoPtr->SduLength);
 			SecOCintermediateRx[RxPduId].spduBlen = PduInfoPtr->SduLength;
 		}
 		break;
-	case QUEUE: // µ±ÓĞÔÚÊ¹ÓÃµÄsecure pdu£¬ ÅÅ¶ÓĞÂÀ´µÄÊı¾İ£¬SecOCReceptionQueueSizeÎªÉÏÏŞ
+	case QUEUE: // å½“æœ‰åœ¨ä½¿ç”¨çš„secure pduï¼Œ æ’é˜Ÿæ–°æ¥çš„æ•°æ®ï¼ŒSecOCReceptionQueueSizeä¸ºä¸Šé™
 		/*
-		if(SecOCintermidateRx[RxPduId] Î´ÓÃÂú¶ÓÁĞ){  // ĞèÒªÉè¼ÆÊı¾İÀàĞÍ£¨Ñ­»·¶ÓÁĞ£¿£©
-			ÅÅ¶Ó
+		if(SecOCintermidateRx[RxPduId] æœªç”¨æ»¡é˜Ÿåˆ—){  // éœ€è¦è®¾è®¡æ•°æ®ç±»å‹ï¼ˆå¾ªç¯é˜Ÿåˆ—ï¼Ÿï¼‰
+			æ’é˜Ÿ
 		}
 		*/
 		break;
@@ -138,11 +144,34 @@ void  SecOC_RxIndication(PduIdType RxPduId, const PduInfoType* PduInfoPtr){
 		break;
 	}
 }
-void verify(){
 
+
+void verify() {
 }
-void SecOC_MainFunctionRx(){
 
+
+void SecOC_MainFunctionRx() {
+	// SecOCæ˜¯å¦å·²åˆå§‹åŒ–
+	if (_secOCState != SECOC_INIT)
+		return;
+
+	// éå†æ‰€æœ‰apduå­˜å‚¨ç©ºé—´
+	uint8 idx = 0;
+	Std_ReturnType result;
+	PduInfoType *PduInfoPtr;
+	for (idx; idx < SECOC_NUM_OF_TX_IPDU; idx++)
+	{
+		SecOCintermediateRx_type intermediate = SecOCintermediateRx[idx];
+		// è‹¥å­˜åœ¨å€¼ä¸”spduæœªé”
+		if (intermediate.apduBlen > 0 && intermediate.slock == 0)
+		{
+			verify();
+			if (PduInfoPtr->SduLength > 0)
+			{ // verify æˆåŠŸ
+				result = PduR_SecOCTransmit(idx, PduInfoPtr);
+			}
+		}
+	}
 }
 
 

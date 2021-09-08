@@ -1,7 +1,7 @@
 /*
  * ComStack_Types.h
  *
- *  Created on: 2021Äê9ÔÂ6ÈÕ
+ *  Created on: 2021å¹´9æœˆ6æ—¥
  *      Author: zhao chenyang
  */
 
@@ -32,14 +32,14 @@ typedef struct {
     PduLengthType TxTpDataCnt; //Offset from the current position which identifies the number of bytes to be retransmitted.
 } RetryInfoType;
 
-// Êı¾İĞÅÏ¢  °üÀ¨Êı¾İÖ¸Õë£¬metaÊı¾İÖ¸Õë£¬pdu³¤¶È
+// æ•°æ®ä¿¡æ¯  åŒ…æ‹¬æ•°æ®æŒ‡é’ˆï¼Œmetaæ•°æ®æŒ‡é’ˆï¼Œpdué•¿åº¦
 typedef struct {
     uint8 *SduDataPtr;
     uint8 *MetaDataPtr;
     PduLengthType SduLength;
 } PduInfoType;
 
-//×Ô¶¨Òå
+//è‡ªå®šä¹‰
 typedef enum {
     drirect,
     trigger,
