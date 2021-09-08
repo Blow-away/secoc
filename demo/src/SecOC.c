@@ -14,11 +14,15 @@ uint8 spduTx[8*SECOC_NUM_OF_TX_IPDU];
 uint8 apduRx[8*SECOC_NUM_OF_RX_IPDU];
 uint8 spduRx[8*SECOC_NUM_OF_RX_IPDU];
 
-SecOC_StateType _secOCState = SECOC_INIT;
+SecOC_StateType _secOCState = SECOC_UNINIT;
+
+void init(){
+	_secOCState = SECOC_INIT;
+}
 
 bool is_legal(PduIdType TxPduId){
 	// 判断SecOC是否已初始化(_secOCState)
-	if (SECOC_INIT != _secOCState)
+	if (_secOCState != 1)
 	{
 		return false; // 未初始化
 	}
@@ -28,18 +32,19 @@ bool is_legal(PduIdType TxPduId){
 	{
 		return false; //非secoc内txpduid
 	}
+	return true;
 }
 
 Std_ReturnType SecOC_IfTransmit(PduIdType TxPduId, const PduInfoType *PduInfoPtr){
-	if(!is_legal(TxPduId)){
-		return E_NOT_OK;
-	}
+//	if(is_legal(TxPduId) == 0){
+//		return E_NOT_OK;
+//	}
 	uint8 len = PduInfoPtr->SduLength;
 	uint8 *src = PduInfoPtr->SduDataPtr;
 
-	SecOCintermediate_type intermediate = SecOCintermediateTx[TxPduId];
-	uint8 *dst = apduTx + intermediate.addr_st;
-	intermediate.apduBlen = len;
+	SecOCintermediate_type* intermediate = &SecOCintermediateTx[TxPduId];
+	uint8 *dst = apduTx + intermediate->addr_st;
+	intermediate->apduBlen = len;
 
 	memcpy(dst,src,len);
 
@@ -69,7 +74,7 @@ void SecOC_MainFunctionTx(void) {
         {
         	authenticate(&intermediate);
         	PduInfo.SduLength = intermediate.apduBlen;
-        	PduInfo.SduDataPtr = intermediate.addr_st;
+        	PduInfo.SduDataPtr = apduTx + intermediate.addr_st;
             if (PduInfo.SduLength > 0)
             { //authenticate 成功
                 result = PduR_SecOCTransmit(idx, &PduInfo);

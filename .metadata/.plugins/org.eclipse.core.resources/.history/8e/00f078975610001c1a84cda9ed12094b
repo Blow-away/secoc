@@ -1,0 +1,27 @@
+/*
+ * CanIf.c
+ *
+ *  Created on: 2021年9月6日
+ *      Author: zhao chenyang
+ */
+
+#include "CanIf.h"
+#include "Com.h"
+#include "SecOC_Cfg.h"
+
+uint8 spdu[8*SECOC_NUM_OF_TX_IPDU];
+int len[SECOC_NUM_OF_TX_IPDU];
+Std_ReturnType CanIf_Transmit(PduIdType TxPduId, const PduInfoType *PduInfoPtr){
+	    // 将PduInfoPtr的数据存储进入 spdu数组
+	    // src: PduInfoPtr
+	    // dst: spdu
+	    len[TxPduId] = PduInfoPtr->SduLength;
+	    uint8 *src = PduInfoPtr->SduDataPtr;
+	    uint8 *dst = spdu+8*TxPduId;
+	    memcpy(dst, src, len);
+	    return E_OK;
+}
+
+void send_result(PduIdType TxPduId, Std_ReturnType result){
+	PduR_CanIfTxConfirmation(TxPduId, result);
+}

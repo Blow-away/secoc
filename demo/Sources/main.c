@@ -262,6 +262,8 @@ int main(void)
     BoardInit();
     GPIOInit();
 
+    init();
+
     uint64_t pitResolution;
     /* Initialize TIMING over PIT */
     TIMING_Init(&timing_pal1_instance, &timing_pal1_InitConfig);

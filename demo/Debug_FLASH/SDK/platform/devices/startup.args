@@ -3,8 +3,8 @@
 -DCPU_MPC5748G
 -DTURN_ON_CPU0
 -DDEV_ERROR_DETECT
--I"C:/Users/suche/Documents/GitHub/Secoc/demo/Generated_Code"
--I"C:/Users/suche/Documents/GitHub/Secoc/demo/Sources"
+-I"F:/secoc/demo/Generated_Code"
+-I"F:/secoc/demo/Sources"
 -I"C:/NXP/S32DS_Power_v2.1/S32DS/build_tools/e200_ewl2/EWL_C/include"
 -I"C:/NXP/S32DS_Power_v2.1/S32DS/build_tools/e200_ewl2/EWL_C/include/pa"
 -I"C:/NXP/S32DS_Power_v2.1/S32DS/software/S32_SDK_S32PA_RTM_3.0.0/platform/devices"
@@ -15,7 +15,7 @@
 -I"C:/NXP/S32DS_Power_v2.1/S32DS/software/S32_SDK_S32PA_RTM_3.0.0/platform/drivers/src/clock/MPC57xx"
 -I"C:/NXP/S32DS_Power_v2.1/S32DS/software/S32_SDK_S32PA_RTM_3.0.0/rtos/osif/"
 -I"C:/NXP/S32DS_Power_v2.1/S32DS/software/S32_SDK_S32PA_RTM_3.0.0/platform/pal/inc"
--I"C:/Users/suche/Documents/GitHub/Secoc/demo/header"
+-I"F:/secoc/demo/header"
 -O1
 -g3
 -Wall
