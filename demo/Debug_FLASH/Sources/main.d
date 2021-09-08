@@ -62,7 +62,8 @@ Sources/main.o: ../Sources/main.c \
  C:/NXP/S32DS_Power_v2.1/S32DS/build_tools/e200_ewl2/EWL_C/include/string_api.h \
  C:/Users/suche/Documents/GitHub/Secoc/demo/header/SecOC_Types.h \
  C:/Users/suche/Documents/GitHub/Secoc/demo/header/SecOC_Cfg.h \
- C:/Users/suche/Documents/GitHub/Secoc/demo/header/CanIf.h
+ C:/Users/suche/Documents/GitHub/Secoc/demo/header/CanIf.h \
+ C:/Users/suche/Documents/GitHub/Secoc/demo/header/Com.h
 
 C:/NXP/S32DS_Power_v2.1/S32DS/build_tools/e200_ewl2/EWL_C/include/lib_c99.prefix:
 
@@ -191,3 +192,5 @@ C:/Users/suche/Documents/GitHub/Secoc/demo/header/SecOC_Types.h:
 C:/Users/suche/Documents/GitHub/Secoc/demo/header/SecOC_Cfg.h:
 
 C:/Users/suche/Documents/GitHub/Secoc/demo/header/CanIf.h:
+
+C:/Users/suche/Documents/GitHub/Secoc/demo/header/Com.h:

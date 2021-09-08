@@ -55,6 +55,7 @@
 #include "SecOC.h"
 #include "SecOC_Cfg.h"
 #include "CanIf.h"
+#include "Com.h"
 /******************************************************************************
  * Definitions
  ******************************************************************************/
@@ -241,6 +242,7 @@ void sendCan(int id){
 void clock_callback(void * userData){
 	(void)userData;
 	PINS_DRV_TogglePins(LED_PORT, (1 << LED1));
+	send_message(0);
 	SecOC_MainFunctionTx();
 	for(int i=0;i< SECOC_NUM_OF_TX_IPDU;++i){
 		sendCan(i);

@@ -14,7 +14,7 @@ uint8 spduTx[8*SECOC_NUM_OF_TX_IPDU];
 uint8 apduRx[8*SECOC_NUM_OF_RX_IPDU];
 uint8 spduRx[8*SECOC_NUM_OF_RX_IPDU];
 
-SecOC_StateType _secOCState = SECOC_UNINIT;
+SecOC_StateType _secOCState = SECOC_INIT;
 
 bool is_legal(PduIdType TxPduId){
 	// 判断SecOC是否已初始化(_secOCState)
@@ -47,7 +47,7 @@ Std_ReturnType SecOC_IfTransmit(PduIdType TxPduId, const PduInfoType *PduInfoPtr
 }
 
 
-Std_ReturnType authenticate(SecOCintermediate_type SecOCintermidate,PduInfoType *PduInfoPtr){
+Std_ReturnType authenticate(SecOCintermediate_type* SecOCintermediate){
 	//调用验证
 	return E_OK;
 }
@@ -67,7 +67,9 @@ void SecOC_MainFunctionTx(void) {
         // 若存在值且spdu未锁
         if (intermediate.apduBlen > 0 && intermediate.slock == 0)
         {
-            authenticate(intermediate, &PduInfo);
+        	authenticate(&intermediate);
+        	PduInfo.SduLength = intermediate.apduBlen;
+        	PduInfo.SduDataPtr = intermediate.addr_st;
             if (PduInfo.SduLength > 0)
             { //authenticate 成功
                 result = PduR_SecOCTransmit(idx, &PduInfo);

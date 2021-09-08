@@ -17,7 +17,7 @@ extern uint8 apduRx[];
 extern uint8 spduRx[];
 
 Std_ReturnType SecOC_IfTransmit(PduIdType TxPduId, const PduInfoType *PduInfoPtr);
-Std_ReturnType authenticate(SecOCintermediate_type SecOCintermidate,PduInfoType *PduInfoPtr);
+Std_ReturnType authenticate(SecOCintermediate_type*);
 void SecOC_MainFunctionRx();
 void SecOC_TxConfirmation(PduIdType TxPduId, Std_ReturnType result);
 
