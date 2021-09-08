@@ -225,11 +225,11 @@ void sendCan(int id){
     /* Prepare message to be sent */
     can_message_t message = {
         .cs = 0U,
-        .id = id,
-        .length = len[id]
+        .id = TX_MSG_ID,
+        .length = 8U
     };
 	if(len[id]!=0){
-        memcpy(&message.data,spdu+8*id,len[id]);
+        memcpy(&message.data,spdu+8*id,8U);
     	/* Send the information via CAN */
     	if(CAN_Send(&can_pal1_instance, TX_MAILBOX, &message)==0x000U){
     		send_result(id,E_OK);
