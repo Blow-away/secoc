@@ -73,8 +73,10 @@ void SecOC_MainFunctionTx(void) {
         if (intermediate.apduBlen > 0 && intermediate.slock == 0)
         {
         	authenticate(&intermediate);
+        	// 暂用，应该是将apdu加密为spdu传给上层发送
         	PduInfo.SduLength = intermediate.apduBlen;
         	PduInfo.SduDataPtr = apduTx + intermediate.addr_st;
+
             if (PduInfo.SduLength > 0)
             { //authenticate 成功
                 result = PduR_SecOCTransmit(idx, &PduInfo);
@@ -90,8 +92,8 @@ void SecOC_TxConfirmation(PduIdType TxPduId, Std_ReturnType result){
 		return;
 
 	//释放spdu
-	SecOCintermediate_type intermediate = SecOCintermediateTx[TxPduId];
-	intermediate.spduBlen = 0;
+	SecOCintermediate_type* intermediate = &SecOCintermediateTx[TxPduId];
+	intermediate->spduBlen = 0;
 
 	// 继续传递
 	if (result == E_OK) {
@@ -147,7 +149,30 @@ void verify(){
 
 }
 void SecOC_MainFunctionRx(){
+	//测试暂用
+	// SecOC是否已初始化
+	if (_secOCState != SECOC_INIT)
+		return;
 
+	// 遍历所有spdu存储空间
+	uint8 idx = 0;
+	PduInfoType PduInfo;
+	for (; idx < SECOC_NUM_OF_RX_IPDU; idx++)
+	{
+		SecOCintermediateRx_type intermediate = SecOCintermediateRx[idx];
+		// 若存在值且spdu未锁
+		if (intermediate.apduBlen > 0 && intermediate.slock == 0)
+		{
+			verify(&intermediate);
+			// 暂用，应该是将spdu解密为pdu传给Com层
+			PduInfo.SduLength = intermediate.apduBlen;
+			PduInfo.SduDataPtr = spduRx + intermediate.addr_st;
+			if (PduInfo.SduLength > 0)
+			{ //authenticate 成功
+				PduR_SecOCIfRxIndication(idx,&PduInfo);
+			}
+		}
+	}
 }
 
 

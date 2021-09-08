@@ -1,52 +1,11 @@
-13:40:38 **** Incremental Build of configuration Debug_FLASH for project demo ****
+14:15:19 **** Incremental Build of configuration Debug_FLASH for project demo ****
 make -j12 all 
-Building file: ../src/CanIf.c
-Building file: ../src/SecOC.c
-Invoking: Standard S32DS C Compiler
-powerpc-eabivle-gcc "@src/CanIf.args" -MMD -MP -MF"src/CanIf.d" -MT"src/CanIf.o" -o "src/CanIf.o" "../src/CanIf.c"
-Invoking: Standard S32DS C Compiler
-powerpc-eabivle-gcc "@src/CanIf.args" -MMD -MP -MF"src/SecOC.d" -MT"src/SecOC.o" -o "src/SecOC.o" "../src/SecOC.c"
-../src/SecOC.c: In function 'SecOC_MainFunctionTx':
-../src/SecOC.c:67:20: warning: variable 'result' set but not used [-Wunused-but-set-variable]
-     Std_ReturnType result;
-                    ^
-../src/SecOC.c: In function 'SecOC_TxConfirmation':
-../src/SecOC.c:93:25: warning: variable 'intermediate' set but not used [-Wunused-but-set-variable]
-  SecOCintermediate_type intermediate = SecOCintermediateTx[TxPduId];
-                         ^
-../src/SecOC.c: In function 'SecOC_RxIndication':
-../src/SecOC.c:142:3: warning: implicit declaration of function 'printf' [-Wimplicit-function-declaration]
-   printf("throw err to get wrong SecOCReceptionOverflowStrategy");
-   ^
-../src/CanIf.c: In function 'send_result':
-../src/SecOC.c:142:3: warning: incompatible implicit declaration of built-in function 'printf'
-../src/CanIf.c:26:2: warning: implicit declaration of function 'PduR_CanIfTxConfirmation' [-Wimplicit-function-declaration]
-  PduR_CanIfTxConfirmation(TxPduId, result);
-  ^
-../src/SecOC.c:109:30: warning: variable 'AuthLen' set but not used [-Wunused-but-set-variable]
-  uint8 idx,AuthStartPosition,AuthLen;
-                              ^
-../src/SecOC.c:109:12: warning: variable 'AuthStartPosition' set but not used [-Wunused-but-set-variable]
-  uint8 idx,AuthStartPosition,AuthLen;
-            ^
-../src/SecOC.c:109:8: warning: unused variable 'idx' [-Wunused-variable]
-  uint8 idx,AuthStartPosition,AuthLen;
-        ^
-Finished building: ../src/CanIf.c
-Finished building: ../src/SecOC.c
- 
- 
-Building target: demo.elf
-Invoking: Standard S32DS C Linker
-powerpc-eabivle-gcc -o "demo.elf" "@demo.args"    
-Finished building target: demo.elf
- 
 Invoking: Standard S32DS Print Size
 powerpc-eabivle-size --format=berkeley demo.elf
    text	   data	    bss	    dec	    hex	filename
-  32396	   4156	   9716	  46268	   b4bc	demo.elf
+  32412	   4156	   9716	  46284	   b4cc	demo.elf
 Finished building: demo.siz
  
 
-13:40:39 Build Finished (took 948ms)
+14:15:20 Build Finished (took 308ms)
 
