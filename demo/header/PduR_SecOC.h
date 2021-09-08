@@ -1,21 +1,15 @@
-/*
- * PduR_SecOC.h
- *
- *  Created on: 2021Äê9ÔÂ7ÈÕ
- *      Author: zhao chenyang
- */
+#ifndef __PduR_SecOC__
+#define __PduR_SecOC__
 
-#ifndef PDUR_SECOC_H_
-#define PDUR_SECOC_H_
 #include "Std_Types.h"
 #include "ComStack_Types.h"
 
-//PDUµÄ´«ÊäÇëÇó¡£
-Std_ReturnType PduR_SecOCTransmit(PduIdType TxPduId , const PduInfoType* PduInfoPtr);
+//PDUçš„ä¼ è¾“è¯·æ±‚ã€‚
+Std_ReturnType PduR_SecOCTransmit(PduIdType TxPduId, const PduInfoType *PduInfoPtr);
 
-//ÏÂ²ãÍ¨ĞÅ½Ó¿ÚÄ£¿éÈ·ÈÏPDUµÄ´«Êä»ò´«ÊäPDUÊ§°Ü¡£
+//ä¸‹å±‚é€šä¿¡æ¥å£æ¨¡å—ç¡®è®¤PDUçš„ä¼ è¾“æˆ–ä¼ è¾“PDUå¤±è´¥ã€‚
 void PduR_SecOCIfTxConfirmation(PduIdType TxPduId, Std_ReturnType result);
 
 void PduR_SecOCIfRxIndication(PduIdType RxPduId,const PduInfoType* PduInfoPtr);
 
-#endif /* PDUR_SECOC_H_ */
+#endif

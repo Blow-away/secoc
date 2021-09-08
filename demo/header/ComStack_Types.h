@@ -1,12 +1,5 @@
-/*
- * ComStack_Types.h
- *
- *  Created on: 2021年9月6日
- *      Author: zhao chenyang
- */
-
-#ifndef COMSTACK_TYPES_H_
-#define COMSTACK_TYPES_H_
+#ifndef __Com_Types__
+#define __Com_Types__
 
 #include "Platform_Types.h"
 
@@ -61,4 +54,4 @@ typedef enum {
     BUFREQ_E_OVFL,    //No Buffer of the required length can be provided. This status shall have the value 3.
 } BufReq_ReturnType;
 
-#endif /* COMSTACK_TYPES_H_ */
+#endif

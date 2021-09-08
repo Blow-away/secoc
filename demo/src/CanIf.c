@@ -1,27 +1,21 @@
-/*
- * CanIf.c
- *
- *  Created on: 2021Äê9ÔÂ6ÈÕ
- *      Author: zhao chenyang
- */
-
 #include "CanIf.h"
-#include "Com.h"
-#include "SecOC_Cfg.h"
+#include "PduR_CanIf.h"
 
-uint8 spdu[8*SECOC_NUM_OF_TX_IPDU];
-int len[SECOC_NUM_OF_TX_IPDU];
-Std_ReturnType CanIf_Transmit(PduIdType TxPduId, const PduInfoType *PduInfoPtr){
-	    // ½«PduInfoPtrµÄÊı¾İ´æ´¢½øÈë spduÊı×é
-	    // src: PduInfoPtr
-	    // dst: spdu
-	    len[TxPduId] = PduInfoPtr->SduLength;
-	    uint8 *src = PduInfoPtr->SduDataPtr;
-	    uint8 *dst = spdu+8*TxPduId;
-	    memcpy(dst, src, len[TxPduId]);
-	    return E_OK;
+Std_ReturnType CanIf_Transmit(PduIdType TxPduId, const PduInfoType *PduInfoPtr)
+{
+    pduId = TxPduId;
+    // å°†PduInfoPtrçš„æ•°æ®å­˜å‚¨è¿›å…¥ spduæ•°ç»„
+    // src: PduInfoPtr
+    // dst: spdu
+    uint8 len = PduInfoPtr->SduLength;
+    uint8 *src = PduInfoPtr->SduDataPtr;
+    uint8 *dst = spdu;
+    memcpy(dst, src, len);
+    return E_OK;
 }
 
-void send_result(PduIdType TxPduId, Std_ReturnType result){
-	PduR_CanIfTxConfirmation(TxPduId, result);
+// å‘é€ç»“æœ
+void send_result(Std_ReturnType result)
+{
+    PduR_CanIfTxConfirmation(pduId, result);
 }
